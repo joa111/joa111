@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G. Joachim DKhar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+
+        nav .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        nav .logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 100px;
+            padding: 80px 0 60px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 60px;
+            font-size: 16px;
+        }
+
+        /* Bio */
+        .bio {
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Contact */
+        .contact-section {
+            margin-bottom: 80px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .contact-section h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            opacity: 0.6;
+        }
+
+        /* Projects */
+        .projects h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project {
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #e0e0e0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project:nth-child(2) { animation-delay: 0.1s; }
+        .project:nth-child(3) { animation-delay: 0.2s; }
+        .project:nth-child(4) { animation-delay: 0.3s; }
+        .project:nth-child(5) { animation-delay: 0.4s; }
+        .project:nth-child(6) { animation-delay: 0.5s; }
+        .project:nth-child(7) { animation-delay: 0.6s; }
+        .project:nth-child(8) { animation-delay: 0.7s; }
+        .project:nth-child(9) { animation-delay: 0.8s; }
+        .project:nth-child(10) { animation-delay: 0.9s; }
+
+        .project h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .project p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .project a {
+            color: #000;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+            display: inline-block;
+        }
+
+        .project a:hover {
+            opacity: 0.6;
+        }
+
+        .project a::after {
+            content: ' →';
+        }
+
+        /* Footer */
+        .footer {
+            color: #999;
+            font-size: 13px;
+            margin-top: 80px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #000;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 0 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+                border-bottom: 1px solid #e0e0e0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav ul.active {
+                max-height: 300px;
+            }
+
+            nav ul li {
+                padding: 10px 0;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                margin-top: 80px;
+                padding: 60px 0 40px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">G. Joachim DKhar</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div id="home" class="hero">
+            <h1>G. Joachim DKhar</h1>
+            <p class="subtitle">Developer / Creator</p>
+        </div>
+
+        <div class="bio">
+            <p>Developer passionate about technology and building solutions that matter.</p>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="contact-section">
+            <h2>Contact</h2>
+            <div class="contact-links">
+                <a href="tel:+916009383846">+91 6009383846</a>
+                <a href="mailto:gjdkhar@gmail.com">gjdkhar@gmail.com</a>
+                <a href="https://github.com/joa111" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div id="projects" class="projects">
+            <h2>Projects</h2>
+
+            <div class="project">
+                <h3>Rentnanga</h3>
+                <p>On-demand car booking application.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.gjdkhar.rent_nanga&pcampaignid=web_share" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Bot Appointment System</h3>
+                <p>An automated appointment system with an Admin Dashboard.</p>
+                <a href="https://bot-appointment.vercel.app/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Order Management System</h3>
+                <p>An order management/creation website with automatic invoice generator.</p>
+                <a href="https://order-teal.vercel.app/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Ilahui Shillong</h3>
+                <p>Landing and portfolio site.</p>
+                <a href="https://ilahui-shillong.in/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Click Cafe</h3>
+                <p>A landing page for a renowned cafe in Shillong.</p>
+                <a href="https://click-cafe.vercel.app/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Dalys Digital</h3>
+                <p>Landing site for Dalys Digital.</p>
+                <a href="https://joa111.github.io/DALYS/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Meghalaya Real Estate Regulatory Authority</h3>
+                <p>A Government information website.</p>
+                <a href="https://meghrera.org.in/Demo/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>Ecommerce</h3>
+                <p>Ecommerce platform.</p>
+                <a href="https://ecom-mang.vercel.app/" target="_blank">Visit</a>
+            </div>
+
+            <div class="project">
+                <h3>GitHub</h3>
+                <p>Open-source projects and implementations.</p>
+                <a href="https://github.com/joa111" target="_blank">Visit</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
